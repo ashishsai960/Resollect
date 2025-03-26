@@ -14,7 +14,7 @@ const App = () => {
       
       <Slidebar />
       <div className="content">
-        <h2>Welcome to Dashboard</h2>
+        <h2>Welcome to Classroom</h2>
         <StudentList />
       </div>
       
