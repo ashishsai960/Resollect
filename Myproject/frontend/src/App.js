@@ -5,9 +5,11 @@ import Navbar from "./component/Navbar/Navbar";
 import Slidebar from "./component/Slidebar/Slidebar";
 import StudentList from "./component/StudentList/StudentList";
 
+
 const App = () => {
   return (
-    <div>
+    
+      <div>
       <Navbar />
       
       <Slidebar />
@@ -17,6 +19,8 @@ const App = () => {
       </div>
       
     </div>
+    
+    
   );
 };
 

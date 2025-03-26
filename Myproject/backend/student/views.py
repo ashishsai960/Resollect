@@ -20,13 +20,12 @@ def get_students(request):
     return Response({"students": serializer.data}, status=status.HTTP_200_OK)
 
 @api_view(['PUT', 'PATCH'])
-def update_student(request, student_id):  # student_id should be used in the URL
+def update_student(request, student_id):  
     try:
-        student = Student.objects.get(id=student_id)  # Look up by 'id'
+        student = Student.objects.get(id=student_id)  
     except Student.DoesNotExist:
         return Response({"error": "Student not found"}, status=status.HTTP_404_NOT_FOUND)
 
-    # Allow partial updates using PATCH
     serializer = StudentSerializer(student, data=request.data, partial=True)
 
     if serializer.is_valid():
@@ -35,11 +34,11 @@ def update_student(request, student_id):  # student_id should be used in the URL
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['DELETE'])  # Only allow DELETE method
+@api_view(['DELETE']) 
 def delete_student(request, student_id):  
     try:
-        student = Student.objects.get(id=student_id)  # Fetch student by ID
-        student.delete()  # Delete the student
+        student = Student.objects.get(id=student_id)  
+        student.delete()  
         return Response({"message": "Student deleted successfully!"}, status=status.HTTP_204_NO_CONTENT)
     except Student.DoesNotExist:
         return Response({"error": "Student not found"}, status=status.HTTP_404_NOT_FOUND)

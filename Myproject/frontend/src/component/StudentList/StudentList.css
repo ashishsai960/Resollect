@@ -1,4 +1,4 @@
-/* Student Container */
+
 .student-container {
     position: relative;
     width: calc(100% - 120px);
@@ -8,7 +8,7 @@
     border-radius: 8px;
 }
 
-/* Table Styling */
+
 .student-table table {
     width: 100%;
     border-collapse: collapse;
@@ -20,13 +20,12 @@
     text-align: left;
 }
 
-/* Action Buttons: Align Edit & Delete Buttons Side by Side */
 .action-buttons {
     display: flex;
-    gap: 10px; /* Space between buttons */
+    gap: 10px; 
 }
 
-/* Buttons */
+
 .edit-btn, .delete-btn {
     padding: 6px 12px;
     border: none;
@@ -45,48 +44,48 @@
     color: white;
 }
 
-/* ✅ Updated Top Section (Search + Filter + Button) */
+
 .top-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px; /* Adjust spacing */
+    gap: 15px; 
     margin-bottom: 20px;
 }
 
-/* ✅ Wrap Search & Filter Together */
+
 .search-filter {
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between search and filter */
+    gap: 10px;
 }
 
-/* Search Input */
+
 .search-input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 200px; /* Adjust width */
+    width: 200px; 
 }
 
-/* Filter Dropdown */
+
 .filter-dropdown {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-/* ✅ Updated Add Student Button */
+
 .add-student-btn {
     background-color: #000000;
     color: white;
-    padding: 6px 10px; /* Reduce padding */
+    padding: 6px 10px; 
     border: none;
     border-radius: 4px;
     cursor: pointer;
     width: auto;
-    font-size: 14px; /* Reduce font size */
-    font-weight: normal; /* Adjust font weight if needed */
+    font-size: 14px; 
+    font-weight: normal; 
     transition: background 0.3s ease-in-out;
 }
 
@@ -148,4 +147,3 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-

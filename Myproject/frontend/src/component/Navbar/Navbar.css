@@ -1,4 +1,4 @@
-/* Navbar */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -14,14 +14,14 @@
     z-index: 1000;
 }
 
-/* Logo Styling */
+
 .logo-container {
     display: flex;
     align-items: center;
 }
 
 .logo {
-    height: 40px; /* Adjust as needed */
+    height: 40px;
 }
 
 .navbar-title {
@@ -32,15 +32,15 @@
   }
   
 
-/* User profile and logout button container */
+
 .user-actions {
     display: flex;
     align-items: center;
-    gap: 15px; /* Space between profile and logout button */
+    gap: 15px;
     transform: translateX(-20px);
 }
 
-/* User Profile */
+
 .user-profile {
     display: flex;
     align-items: center;

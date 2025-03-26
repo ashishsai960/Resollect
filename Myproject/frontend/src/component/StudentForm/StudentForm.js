@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Swal from "sweetalert2"; // ✅ Import SweetAlert2
+import Swal from "sweetalert2"; // 
 import "./StudentForm.css";
 
 const StudentForm = ({ student, onClose }) => {
