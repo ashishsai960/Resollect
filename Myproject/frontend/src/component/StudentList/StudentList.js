@@ -10,7 +10,7 @@ const StudentList = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const studentsPerPage = 5;
+  const studentsPerPage = 9;
 
   const fetchStudents = async () => {
     try {
@@ -93,7 +93,7 @@ const StudentList = () => {
           </select>
         </div>
         <button className="add-student-btn" onClick={() => setShowForm(true)}>
-          + Add Student
+          Add New Student
         </button>
       </div>
 
@@ -158,4 +158,3 @@ const StudentList = () => {
 };
 
 export default StudentList;
-
