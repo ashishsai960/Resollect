@@ -1,0 +1,8 @@
+.content {
+  margin-top: 60px;       /* Below the fixed navbar */
+  margin-left: 15%;       /* To the right of the sidebar */
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: calc(100vh - 60px); /* Fill remaining height */
+  background-color: #f9f9f9;
+}

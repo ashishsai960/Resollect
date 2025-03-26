@@ -1,0 +1,123 @@
+/* Student Container */
+.student-container {
+    position: relative;
+    width: calc(100% - 120px);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Table Styling */
+.student-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.student-table th, .student-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Action Buttons: Align Edit & Delete Buttons Side by Side */
+.action-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Buttons */
+.edit-btn, .delete-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* ✅ Updated Top Section (Search + Filter + Button) */
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px; /* Adjust spacing */
+    margin-bottom: 20px;
+}
+
+/* ✅ Wrap Search & Filter Together */
+.search-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between search and filter */
+}
+
+/* Search Input */
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px; /* Adjust width */
+}
+
+/* Filter Dropdown */
+.filter-dropdown {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ✅ Updated Add Student Button */
+.add-student-btn {
+    background-color: #000000;
+    color: white;
+    padding: 6px 10px; /* Reduce padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: auto;
+    font-size: 14px; /* Reduce font size */
+    font-weight: normal; /* Adjust font weight if needed */
+    transition: background 0.3s ease-in-out;
+}
+
+.add-student-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-inline-color: #000;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    width: auto;
+}
+
+.page-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: auto;
+}
+
+.page-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    
+}

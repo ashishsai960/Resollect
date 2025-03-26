@@ -1,0 +1,59 @@
+
+/* src/components/Sidebar/Sidebar.css */
+.sidebar {
+  position: fixed;
+  top: 60px; /* Below Navbar */
+  left: 0;
+  width: 200px;
+  height: calc(100vh - 60px);
+  background: #f8f9fa;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: background 0.3s ease;
+}
+
+.sidebar-menu li:hover {
+  background: #e0e0e0;
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+
+.powered-by {
+  display: flex;
+  align-items: center;  /* Align text and image in a straight line */
+  justify-content: center; /* Center it horizontally */
+  gap: 8px; /* Space between text and logo */
+  font-size: 14px;
+  color: #555;
+  position: absolute; /* Stick it to the bottom */
+  bottom: 10px; /* Adjust as needed */
+  width: 100%; /* Ensure it spans full width */
+  text-align: center;
+  margin-top: -50px;
+}
+
+.powered-by img {
+  height: 20px; /* Adjust the logo size */
+  width: auto;
+}
