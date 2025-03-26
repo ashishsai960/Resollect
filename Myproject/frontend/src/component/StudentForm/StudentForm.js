@@ -1,37 +1,46 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2"; // ✅ Import SweetAlert2
 import "./StudentForm.css";
 
 const StudentForm = ({ student, onClose }) => {
   const [formData, setFormData] = useState({
     name: student?.name || "",
     entry_number: student?.entry_number || "",
-    batch: student?.batch || "", // ✅ Added batch field
+    batch: student?.batch || "",
     marks: student?.marks || "",
-    attendance_percentage: student?.attendance_percentage || "", // ✅ Fixed field name
+    attendance_percentage: student?.attendance_percentage || "",
     grade: student?.grade || "",
   });
 
-  // Handle Input Change
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Convert necessary fields to appropriate data types
     const payload = {
       ...formData,
-      marks: parseFloat(formData.marks), // ✅ Convert to float
-      attendance_percentage: parseFloat(formData.attendance_percentage), // ✅ Convert to float
-      grade: formData.grade.trim() ? formData.grade : null, // ✅ Set to null if empty
+      marks: parseFloat(formData.marks),
+      attendance_percentage: parseFloat(formData.attendance_percentage),
+      grade: formData.grade.trim() ? formData.grade : null,
     };
 
     const url = student
       ? `http://127.0.0.1:8000/api/student/update/${student.id}/`
       : "http://127.0.0.1:8000/api/student/create/";
-
     const method = student ? "PUT" : "POST";
 
     try {
@@ -45,11 +54,19 @@ const StudentForm = ({ student, onClose }) => {
         throw new Error("Failed to submit form");
       }
 
-      console.log("Form submitted successfully!");
-      onClose(); // Close form after successful submission
+      Toast.fire({
+        icon: "success",
+        title: student ? "Student updated successfully!" : "Student added successfully!",
+      });
+
+      onClose();
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Error: Could not submit student details.");
+      Swal.fire({
+        icon: "error",
+        title: "Submission Failed",
+        text: "Could not submit student details.",
+      });
     }
   };
 
@@ -60,7 +77,7 @@ const StudentForm = ({ student, onClose }) => {
         <form onSubmit={handleSubmit}>
           <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
           <input type="text" name="entry_number" placeholder="Entry Number" value={formData.entry_number} onChange={handleChange} required />
-          <select name="batch" value={formData.batch} onChange={handleChange} required> {/* ✅ Dropdown for batch */}
+          <select name="batch" value={formData.batch} onChange={handleChange} required>
             <option value="">Select Batch</option>
             <option value="2024">Batch 2024</option>
             <option value="2025">Batch 2025</option>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import StudentForm from "../StudentForm/StudentForm";
 import "./StudentList.css";
 
@@ -9,9 +10,8 @@ const StudentList = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const studentsPerPage = 5; 
+  const studentsPerPage = 5;
 
-  // Fetch Students from API
   const fetchStudents = async () => {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/student/list/");
@@ -27,39 +27,46 @@ const StudentList = () => {
     fetchStudents();
   }, []);
 
-  // Handle Delete
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this student?")) return;
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/api/student/delete/${id}/`, { method: "DELETE" });
+          if (!response.ok) throw new Error("Failed to delete student");
 
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/api/student/delete/${id}/`, { method: "DELETE" });
-      if (!response.ok) throw new Error("Failed to delete student");
-
-      setStudents((prevStudents) => prevStudents.filter((student) => student.id !== id));
-    } catch (error) {
-      console.error("Error deleting student:", error);
-      alert("Failed to delete student.");
-    }
+          setStudents((prevStudents) => prevStudents.filter((student) => student.id !== id));
+          Swal.fire("Deleted!", "The student has been deleted.", "success");
+        } catch (error) {
+          console.error("Error deleting student:", error);
+          Swal.fire("Error!", "Failed to delete student.", "error");
+        }
+      }
+    });
   };
 
-  // Handle Edit
   const handleEdit = (student) => {
     setSelectedStudent(student);
     setShowForm(true);
   };
 
-  // Handle Student Addition/Update (Triggers a refresh)
   const handleFormClose = () => {
     setShowForm(false);
     setSelectedStudent(null);
-    fetchStudents(); // Refresh student list
+    fetchStudents();
   };
 
-  // Filtered Student List
   const filteredStudents = students.filter((student) => {
     return (
       student.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filter === "" || student.batch === filter) // ✅ Fixed batch filtering
+      (filter === "" || student.batch === filter)
     );
   });
 
@@ -68,20 +75,9 @@ const StudentList = () => {
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
   const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
 
-  // Handle Page Change
-  const goToNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
-
-  const goToPrevPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-
   return (
     <div className="student-container">
       <div className="top-section">
-        {/* Search & Filter */}
         <div className="search-filter">
           <input
             type="text"
@@ -90,13 +86,9 @@ const StudentList = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
           />
-          <select
-            className="filter-dropdown"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          >
+          <select className="filter-dropdown" value={filter} onChange={(e) => setFilter(e.target.value)}>
             <option value="">All Batches</option>
-            <option value="2024">Batch 2024</option> {/* ✅ Fixed batch values */}
+            <option value="2024">Batch 2024</option>
             <option value="2025">Batch 2025</option>
           </select>
         </div>
@@ -105,14 +97,13 @@ const StudentList = () => {
         </button>
       </div>
 
-      {/* Student Table */}
       <div className="student-table">
         <table>
           <thead>
             <tr>
               <th>Name</th>
               <th>Entry Number</th>
-              <th>Batch</th> {/* ✅ Added batch column */}
+              <th>Batch</th>
               <th>Marks</th>
               <th>Attendance (%)</th>
               <th>Grade</th>
@@ -120,21 +111,21 @@ const StudentList = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredStudents.length > 0 ? (
-              filteredStudents.map((student) => (
+            {currentStudents.length > 0 ? (
+              currentStudents.map((student) => (
                 <tr key={student.id}>
                   <td>{student.name}</td>
                   <td>{student.entry_number}</td>
-                  <td>{student.batch}</td> {/* ✅ Display batch */}
+                  <td>{student.batch}</td>
                   <td>{student.marks}</td>
-                  <td>{student.attendance_percentage}%</td> {/* ✅ Fixed field name */}
+                  <td>{student.attendance_percentage}%</td>
                   <td>{student.grade || "N/A"}</td>
                   <td>
                     <div className="action-buttons">
-                    <button className="edit-btn" onClick={() => handleEdit(student)}>Edit</button>
-                    <button className="delete-btn" onClick={() => handleDelete(student.id)}>Delete</button>
+                      <button className="edit-btn" onClick={() => handleEdit(student)}>Edit</button>
+                      <button className="delete-btn" onClick={() => handleDelete(student.id)}>Delete</button>
                     </div>
-                </td>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -145,20 +136,26 @@ const StudentList = () => {
           </tbody>
         </table>
       </div>
-      <div className="pagination">
-        <button className="page-btn" onClick={goToPrevPage} disabled={currentPage === 1}>
-          ◀ Prev
-        </button>
-        <span> Page {currentPage} of {totalPages} </span>
-        <button className="page-btn" onClick={goToNextPage} disabled={currentPage === totalPages}>
-          Next ▶
-        </button>
+
+      {/* Pagination Footer */}
+      <div className="portfolio-footer">
+        <span>
+          Showing {indexOfFirstStudent + 1}–{Math.min(indexOfLastStudent, filteredStudents.length)} of {filteredStudents.length} results
+        </span>
+        <div className="pagination-controls">
+          <button className="pagination-btn" onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <button className="pagination-btn" onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
       </div>
 
-      {/* Student Form Modal */}
       {showForm && <StudentForm student={selectedStudent} onClose={handleFormClose} />}
     </div>
   );
 };
 
 export default StudentList;
+

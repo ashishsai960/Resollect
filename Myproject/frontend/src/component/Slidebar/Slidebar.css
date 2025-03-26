@@ -1,8 +1,7 @@
 
-/* src/components/Sidebar/Sidebar.css */
 .sidebar {
   position: fixed;
-  top: 60px; /* Below Navbar */
+  top: 60px; 
   left: 0;
   width: 200px;
   height: calc(100vh - 60px);
@@ -41,19 +40,19 @@
 
 .powered-by {
   display: flex;
-  align-items: center;  /* Align text and image in a straight line */
-  justify-content: center; /* Center it horizontally */
-  gap: 8px; /* Space between text and logo */
+  align-items: center;  
+  justify-content: center;
+  gap: 8px; 
   font-size: 14px;
   color: #555;
-  position: absolute; /* Stick it to the bottom */
-  bottom: 10px; /* Adjust as needed */
-  width: 100%; /* Ensure it spans full width */
+  position: absolute; 
+  bottom: 10px; 
+  width: 100%; 
   text-align: center;
   margin-top: -50px;
 }
 
 .powered-by img {
-  height: 20px; /* Adjust the logo size */
+  height: 20px; 
   width: auto;
 }
