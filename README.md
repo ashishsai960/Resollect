@@ -3,6 +3,34 @@
 Overview
 The **Student Record Management System (SRMS)** is a web-based application designed for **IIT Ropar professors** to efficiently manage student records. This system allows professors to create and manage classrooms, add, edit, and delete student records, and track academic performance securely.
 
+# Deployment Note
+
+### Deployment Status
+
+Due to time constraints, I was unable to fully integrate and deploy the frontend and backend together under a single domain with HTTPS (SSL certificate). Setting up a secure connection (SSL) requires additional configuration and time, which was not feasible within the given deadline.
+
+### Current Deployment Approach
+
+As an alternative, I have deployed the frontend and backend separately:
+
+- **Frontend**: Hosted on **Vercel**
+    - Live URL: [https://resollect-ashy.vercel.app](https://resollect-ashy.vercel.app/)
+- **Backend**: Hosted on **AWS EC2** (Ubuntu instance)
+    - API Base URL: [http://16.17.129.209:8000](http://16.17.129.209:8000/)
+
+### Challenges Faced
+
+1. **SSL Certificate Requirement**:
+    - A secure HTTPS connection was needed for frontend-backend communication (CORS policies, JWT security).
+    - Configuring SSL (e.g., via Let’s Encrypt, Nginx reverse proxy) would have required additional setup time.
+2. **Time Constraints**:
+    - Due to project deadlines, I prioritized functional deployment over full integration.
+
+### Future Improvements
+
+- **Full Integration**: Deploy both frontend and backend under a single domain with HTTPS
+- **Automated CI/CD**: Implement GitHub Actions or similar for seamless updates.
+  
 ## Features
 - **Classroom Management**: Create and manage courses/subjects.
 - **Student Records**: Add, edit, and delete student details (entry number, attendance, marks).
