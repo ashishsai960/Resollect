@@ -98,14 +98,9 @@ The **Student Record Management System (SRMS)** is a web-based application desig
 | `api/accounts/signup/` | POST | Signup for professors |
 | `api/accounts/login/` | POST | Login for professors |
 
-## Screenshots
-- **Classroom Page**: View and manage student records with search and filter options.
-- **Add/Edit Student**: Forms for adding or editing student details.
-- **SweetAlerts**: Notifications for successful actions like updates or deletions.
 
 ## Links
 - **GitHub Repository**: [https://github.com/ashishsai960/Resollect.git](https://github.com/ashishsai960/Resollect.git)
-- **Backend**: [http://16.17.129.209:8000/](http://16.17.129.209:8000/)
 - **Frontend**: [https://resollect-ashy.vercel.app](https://resollect-ashy.vercel.app)
 
 ## Author
