@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-pgqk1r++o9-%t5+ar(+^nw%vsd0p+9u9(2l%l#izc*bec(-5sq
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0','localhost','127.0.0.1',
-                 '16.171.129.209']
+                 '16.171.129.209',"CORS_ALLOW_ALL_ORIGINS = True"]
 
 
 CORS_ALLOW_METHODS = [
@@ -64,7 +64,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React frontend
+    "http://localhost:3000","https://resollect-ashy.vercel.app"  # React frontend
 ]
 CORS_ALLOW_ALL_ORIGINS = True 
 ROOT_URLCONF = "backend.urls"
@@ -156,3 +156,4 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
+CORS_ALLOW_ALL_ORIGINS = True
