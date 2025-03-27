@@ -39,8 +39,8 @@ const StudentForm = ({ student, onClose }) => {
     };
 
     const url = student
-      ? `http://127.0.0.1:8000/api/student/update/${student.id}/`
-      : "http://127.0.0.1:8000/api/student/create/";
+      ? `http://16.171.129.209:8000/api/student/update/${student.id}/`
+      : "http://16.171.129.209:8000/api/student/create/";
     const method = student ? "PUT" : "POST";
 
     try {

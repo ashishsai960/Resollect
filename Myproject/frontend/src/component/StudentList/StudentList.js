@@ -26,7 +26,7 @@ const StudentList = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/student/list/");
+      const response = await fetch("http://16.171.129.209:8000/api/student/list/");
       if (!response.ok) throw new Error("Failed to fetch students");
       const data = await response.json();
       setStudents(data.students);
@@ -51,7 +51,7 @@ const StudentList = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/api/student/delete/${id}/`, { method: "DELETE" });
+          const response = await fetch(`http://16.171.129.209:8000/api/student/delete/${id}/`, { method: "DELETE" });
           if (!response.ok) throw new Error("Failed to delete student");
 
           setStudents((prevStudents) => prevStudents.filter((student) => student.id !== id));
